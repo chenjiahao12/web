@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjh.demo.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.cjh.demo.model.User" >
+    <constructor >
+      <idArg column="uname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uname, pwd
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_vue_user
+    where uname = #{uname,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_vue_user
+    where uname = #{uname,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cjh.demo.model.User" >
+    insert into t_vue_user (uname, pwd)
+    values (#{uname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjh.demo.model.User" >
+    insert into t_vue_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjh.demo.model.User" >
+    update t_vue_user
+    <set >
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uname = #{uname,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjh.demo.model.User" >
+    update t_vue_user
+    set pwd = #{pwd,jdbcType=VARCHAR}
+    where uname = #{uname,jdbcType=VARCHAR}
+  </update>
+
+  <select id="login" resultMap="BaseResultMap" parameterType="com.cjh.demo.model.User" >
+    select
+    <include refid="Base_Column_List" />
+    from t_vue_user
+    <if test="uname!=null">
+      where uname = #{uname}
+    </if>
+    <if test="pwd!=null">
+      and pwd = #{pwd}
+    </if>
+  </select>
+
+
+
+
+
+</mapper>

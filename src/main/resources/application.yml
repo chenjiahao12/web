@@ -1,0 +1,31 @@
+#mysql连接对象
+spring:
+
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/t224?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+      username: root
+      password: 123
+
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+
+#显示日志
+logging:
+  level:
+    com.cjh.demo.mapper: debug
+
+#服务器的域名
+server:
+  port: 80
+
+
+
