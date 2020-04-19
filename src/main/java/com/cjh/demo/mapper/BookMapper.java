@@ -23,4 +23,6 @@ public interface BookMapper {
         int updateByPrimaryKey(Book record);
 
         List<Map> bookPager(Map map);
+
+        List<Book> getAll();
 }

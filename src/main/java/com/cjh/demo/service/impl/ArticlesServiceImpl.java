@@ -66,4 +66,9 @@ public class ArticlesServiceImpl implements ArticlesService {
     public List<Map> selectAllPager(Articles record) {
         return null;
     }
+
+    @Override
+    public List<Articles> getAll() {
+        return articlesMapper.getAll();
+    }
 }

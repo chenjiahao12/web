@@ -23,4 +23,6 @@ public interface ArticlesMapper {
     int updateByPrimaryKey(Articles record);
 
     List<Map> selectAllPager(Articles record);
+
+    List<Articles> getAll();
 }

@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public User login(User user) {
         return userMapper.login(user);
     }
+
+    @Override
+    public int insertSelective(User record) {
+        return userMapper.insertSelective(record);
+    }
 }

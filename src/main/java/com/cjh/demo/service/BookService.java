@@ -33,4 +33,8 @@ public interface BookService {
     @CacheEvict(value="my-redis-cache2",allEntries = true)
     void clear();
 
+
+    int insertSelective(Book record);
+
+    List<Book> getAll();
 }

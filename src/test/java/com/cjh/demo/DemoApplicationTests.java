@@ -1,15 +1,19 @@
 package com.cjh.demo;
 
+import com.cjh.demo.mapper.BookMapper;
 import com.cjh.demo.model.Articles;
+import com.cjh.demo.model.Book;
 import com.cjh.demo.model.TreeNode;
 import com.cjh.demo.model.User;
 
+import com.cjh.demo.poi.domeweb;
 import com.cjh.demo.service.ArticlesService;
 import com.cjh.demo.service.BookService;
 import com.cjh.demo.service.TreeNodeService;
 import com.cjh.demo.service.UserService;
 import com.cjh.demo.util.JsonData;
 import com.cjh.demo.util.PageBean;
+import com.sun.media.sound.SoftTuning;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 @SpringBootTest
 class DemoApplicationTests {
@@ -35,6 +42,8 @@ class DemoApplicationTests {
     private TreeNodeService treeNodeService;
 @Autowired
 private ArticlesService articlesService;
+
+
 
 @Autowired
    private BookService bookService;
@@ -87,4 +96,28 @@ private ArticlesService articlesService;
         }
         System.out.println(pageBean);
     }
+    @Test
+    public void Path()throws  Exception{
+        domeweb domeweb = new domeweb();
+        String next = "E:\\学习资料\\导入导出\\user.xlsx";
+        List<Book> read = domeweb.read(next);
+        for (Book user : read) {
+            int i = bookService.insertSelective(user);
+        }
+        System.err .println("导入成功");
+
+    }
+
+    @Test
+    public  void getall()throws IOException {
+        List<Book> bookList = bookService.getAll();
+        System.out.println(bookList);
+        domeweb domeweb = new domeweb();
+        String next = "E:\\学习资料\\导入导出\\aaa.xlsx";
+        domeweb.write(bookList,next);
+        System.err.println("ok");
+
+    }
+
+
 }

@@ -44,4 +44,14 @@ public class BookServiceImpl implements BookService {
         System.out.println("清空缓存");
     }
 
+    @Override
+    public int insertSelective(Book record) {
+        return bookMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<Book> getAll() {
+        return bookMapper.getAll();
+    }
+
 }

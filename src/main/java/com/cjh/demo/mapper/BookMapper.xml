@@ -83,4 +83,9 @@
     </where>
 
   </select>
+
+  <select id="getAll" resultType="com.cjh.demo.model.Book">
+    select  <include refid="Base_Column_List" /> from t_mvc_book
+
+  </select>
 </mapper>

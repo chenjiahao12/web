@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface UserService {
 
     User login(User user);
+
+    int insertSelective(User record);
 }

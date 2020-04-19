@@ -1,6 +1,8 @@
 package com.cjh.demo.controller;
 
 import com.cjh.demo.model.Articles;
+import com.cjh.demo.model.Book;
+import com.cjh.demo.poi.ExportExcelUtils;
 import com.cjh.demo.service.ArticlesService;
 
 import com.cjh.demo.util.*;
@@ -10,12 +12,15 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -111,7 +116,28 @@ public class AritclesController {
         Articles articles1 = articlesService.selectByPrimaryKey(articles.getId());
         return new ResultData(200,"查询成功",articles1);
     }
+        @ApiOperation(value = "文章导出",notes ="文章导出" )
+        @ApiResponses({
+                @ApiResponse(code = 200,message = "文章导出成功"),
+                @ApiResponse(code = 500,message = "文章导出失败")
+        })
+        @GetMapping("/getAll")
+     public void Export(HttpServletResponse response){
+         //得到所有要导出的数据
+         List<Articles> orderlist =articlesService.getAll();
+         //定义导出的excel名字
+         String excelName = "文章表";
 
+         //获取需要转出的excel表头的map字段
+         LinkedHashMap<String, String> fieldMap = new LinkedHashMap<>();
+         fieldMap.put("id","文章id");
+         fieldMap.put("title","标题");
+         fieldMap.put("body","内容");
+
+         //导出用户相关信息
+         new ExportExcelUtils().export(excelName,orderlist,fieldMap,response);
+
+     }
 
 
 }
