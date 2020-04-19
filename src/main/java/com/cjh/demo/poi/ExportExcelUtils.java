@@ -14,10 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author
- * @备注
- **/
+
 public class ExportExcelUtils {
     private static final Logger logger = LoggerFactory.getLogger(ExportExcelUtils.class);
 
@@ -78,7 +75,7 @@ public class ExportExcelUtils {
      * @return 字段
      */
     public static Field getFieldByName(String fieldName, Class<?> clazz) {
-        logger.info("根据字段名获取字段对象:getFieldByName()");
+
         // 拿到本类的所有字段
         Field[] selfFields = clazz.getDeclaredFields();
 
@@ -112,7 +109,7 @@ public class ExportExcelUtils {
     public static Object getFieldValueByName(String fieldName, Object o)
             throws Exception {
 
-        logger.info("根据字段名获取字段值:getFieldValueByName()");
+
         Object value = null;
         //根据字段名得到字段对象
         Field field = getFieldByName(fieldName, o.getClass());
@@ -140,7 +137,7 @@ public class ExportExcelUtils {
      */
     public static Object getFieldValueByNameSequence(String fieldNameSequence,
                                                      Object o) throws Exception {
-        logger.info("根据带路径或不带路径的属性名获取属性值,即接受简单属性名:getFieldValueByNameSequence()");
+
         Object value = null;
 
         // 将fieldNameSequence进行拆分
@@ -171,7 +168,7 @@ public class ExportExcelUtils {
      */
     public static <T> void fillSheet(HSSFSheet sheet, List<T> list,
                                      LinkedHashMap<String, String> fieldMap, HSSFCellStyle style) throws Exception {
-        logger.info("向工作表中填充数据:fillSheet()");
+
         // 定义存放英文字段名和中文字段名的数组
         String[] enFields = new String[fieldMap.size()];
         String[] cnFields = new String[fieldMap.size()];
@@ -210,7 +207,3 @@ public class ExportExcelUtils {
     }
 
 }
-
-
-
-

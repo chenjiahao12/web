@@ -8,21 +8,13 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-/**
- * @author created by Zhangdazhuang
- * @version v.0.1
- * @Description TODO
- * @date 2019/4/7
- * @备注
- **/
+
 @Controller
 @Api(value = "ExcelController",description = "导出案例")
 public class ExcelController {
