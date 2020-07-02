@@ -17,7 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <!--更改springboot中的mysql版本，逆向生成不兼容高版本-->
-        <mysql.version>5.1.44</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
 
     </properties>
 
